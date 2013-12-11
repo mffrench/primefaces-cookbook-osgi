@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/templates/masterLayout.xhtml">
+    <ui:define name="chapterItem">
+
+        <h3 style="margin-top:0">Targetable Messages</h3>
+
+        <h:panelGroup id="msg1">
+            <p:messages for="save" showDetail="true"/>
+            <p:growl for="change" showDetail="true"/>
+            <p:growl globalOnly="true" showDetail="true"/>
+        </h:panelGroup>
+
+        <p:commandButton value="Save" update="msg1"
+                         action="#{targetableMessagesController.addSaveMessage}"/>
+        <p:commandButton value="Change" update="@form"
+                         action="#{targetableMessagesController.addChangeMessage}"/>
+        <p:commandButton value="Delete" update="@form"
+                         action="#{targetableMessagesController.addDeleteMessage}"/>
+
+        <h3 style="margin-top:20px">Severity Levels</h3>
+
+        <h:panelGroup id="msg2">
+            <p:messages severity="error" showDetail="true"/>
+            <p:growl severity="info, warn" showDetail="true"/>
+            <p:growl showDetail="true"/>
+        </h:panelGroup>
+        
+        <p:commandButton value="Generate error message" update="msg2"
+                         action="#{targetableMessagesController.addErrorMessage}"/>
+
+    </ui:define>
+</ui:composition>

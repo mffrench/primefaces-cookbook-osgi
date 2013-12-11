@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/masterLayout.xhtml">
+    <ui:define name="chapterItem">
+        <h3 style="margin-top:0">In-cell editing with DataTable</h3>
+        <p:growl id="growl" showDetail="true"/>
+
+        <h:panelGrid columns="2" cellpadding="5">
+
+            <h:outputText value="In cell editing" />
+            <p:dataTable id="inCellEditing" var="car" value="#{dataTableController.cars}" rowKey="#{car.name}" editable="true">
+
+                <p:ajax event="rowEdit" listener="#{dataTableController.onEdit}" update=":mainForm:growl" />
+                <p:ajax event="rowEditCancel" listener="#{dataTableController.onCancel}" update=":mainForm:growl" />
+
+                <p:column headerText="Year">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{car.year}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{car.year}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Name">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{car.name}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:selectOneMenu value="#{car.name}" >
+                                <f:selectItems value="#{dataTableController.carNames}"
+                                               var="name"
+                                               itemLabel="#{name}"
+                                               itemValue="#{name}" />
+                            </h:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Actions">
+                    <p:rowEditor />
+                </p:column>
+            </p:dataTable>
+
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>

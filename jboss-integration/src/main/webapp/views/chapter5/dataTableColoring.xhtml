@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/masterLayout.xhtml">
+    <ui:define name="chapterItem">
+        <h3 style="margin-top:0">Conditional Coloring in DataTable</h3>
+        <p:growl id="growl" showDetail="true"/>
+
+        <style type="text/css">
+            .colored {
+                background-color: #FF0000;
+                color: #FFFFFF;
+            }
+        </style>
+
+        <h:panelGrid columns="2" cellpadding="5">
+
+            <h:outputText value="Coloring According to year &lt;= 1975" />
+            <p:dataTable id="coloring" var="car" value="#{dataTableController.cars}"
+                         rowStyleClass="#{car.year le 1975 ? 'colored' : null}">
+                <p:column headerText="Year">#{car.year}</p:column>
+                <p:column headerText="Name">#{car.name}</p:column>
+            </p:dataTable>
+
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>

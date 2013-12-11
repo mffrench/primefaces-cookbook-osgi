@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/templates/masterLayout.xhtml">
+    <ui:define name="chapterItem">
+
+        <h:panelGroup id="drop" layout="block" styleClass="ui-widget-content"
+                      style="height:150px;width:300px;">
+            <p class="ui-widget-header" style="margin:0;padding:5px;">Drop here</p>
+            <p:droppable onDrop="handleDrop"/>
+        </h:panelGroup>
+        
+        <br/>
+
+        <h:panelGroup id="drag" layout="block" styleClass="dragDiv ui-widget-content">
+            <p>Drag me to my target</p>
+        </h:panelGroup>
+        <p:draggable for="drag"/>
+
+    </ui:define>
+
+    <ui:define name="appResources">
+        <h:outputStylesheet library="css" name="chapter8/droppable.css"/>
+        <h:outputScript library="js" name="chapter8/dragDrop.js" target="body"/>
+    </ui:define>
+</ui:composition>

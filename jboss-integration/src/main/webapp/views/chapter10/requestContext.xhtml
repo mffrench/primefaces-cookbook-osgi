@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/templates/masterLayout.xhtml">
+    <ui:define name="chapterItem">
+
+        <h3 style="margin-top:0">RequestContext (update)</h3>
+
+        <p:selectBooleanCheckbox id="checkbox" itemLabel="Update first output"
+                                 value="#{requestContextController.firstOutput}"/>
+        
+        <h:panelGrid columns="2" style="margin-top:10px;">
+            <h:outputText value="First Output"/>
+            <h:outputText id="firstOutput" value="#{requestContextController.counter}"/>
+        
+            <h:outputText value="Second Output"/>
+            <h:outputText id="secondOutput" value="#{requestContextController.counter}"/>
+        
+            <f:facet name="footer">
+                <p:commandButton value="Increment counter"
+                                 actionListener="#{requestContextController.incrementWithUpdate}"
+                                 process="@form" style="margin:10px 0 10px 0;"/>
+            </f:facet>
+        </h:panelGrid>
+
+        <h3 style="margin-top:20px">RequestContext (scrollTo)</h3>
+
+        <h:panelGrid id="counter" columns="2" style="font-weight:bold;">
+            <h:outputText value="Counter"/>
+            <h:outputText value="#{requestContextController.counter}"/>
+        </h:panelGrid>
+        
+        <p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p>
+        <p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p>
+        <p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p>
+        <p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p>
+        <p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p>
+        <p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p>        
+        
+        <p:commandButton value="Increment counter"
+                         process="@form" update="counter"
+                         actionListener="#{requestContextController.incrementWithScroll}"
+                         style="margin:10px;"/>
+
+    </ui:define>
+</ui:composition>

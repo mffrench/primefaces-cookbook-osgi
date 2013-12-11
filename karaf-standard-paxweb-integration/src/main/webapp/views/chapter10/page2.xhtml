@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/templates/masterLayout.xhtml">
+    <ui:define name="chapterItem">
+
+        <h:panelGrid columns="2">
+            <ui:include src="/views/chapter10/incRememberMenu.xhtml"/>
+
+            <h:panelGroup layout="block" style="margin-left:20px;">
+                Page 2
+            </h:panelGroup>
+        </h:panelGrid>
+
+    </ui:define>
+
+    <ui:define name="appResources">
+        <h:outputScript library="js" name="chapter10/menu.js" target="body"/>
+    </ui:define>
+</ui:composition>
