@@ -16,6 +16,8 @@ To make work this primefaces osgi showcase you need to add some stuff to the def
 Custom JBoss modules : ./jboss-integration/jboss-modules/ <br/>
 JBoss configuration  : ./jboss-integration/jboss-standalone-conf/standalone.conf <br/><br/>
 
+WARNING : in JBoss configuration there is a custom com.sun.faces.jsf-api osgi capability you need to package according the descriptions provided in this configuration file.
+
 That's all. Then run JBoss and deploy the compiled wab...<br/>
 <br/>
 <br/>
