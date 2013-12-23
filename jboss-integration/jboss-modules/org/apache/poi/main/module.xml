@@ -1,0 +1,9 @@
+<module xmlns="urn:jboss:module:1.1" name="org.apache.poi">
+    <resources>
+        <resource-root path="poi-3.9.jar"/>
+	<resource-root path="poi-ooxml-3.9.jar"/>
+	<resource-root path="poi-ooxml-schemas-3.9.jar"/>
+    </resources>
+    <dependencies>
+    </dependencies>
+</module>

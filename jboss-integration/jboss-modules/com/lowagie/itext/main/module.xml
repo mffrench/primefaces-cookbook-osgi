@@ -1,0 +1,8 @@
+<module xmlns="urn:jboss:module:1.1" name="com.lowagie.itext">
+    <resources>
+        <resource-root path="itext-2.1.7.jar"/>
+    </resources>
+    <dependencies>
+        <module name="bouncycastle"/>
+    </dependencies>
+</module>

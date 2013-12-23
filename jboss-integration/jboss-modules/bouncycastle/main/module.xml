@@ -1,0 +1,9 @@
+<module xmlns="urn:jboss:module:1.1" name="bouncycastle">
+    <resources>
+        <resource-root path="bcmail-jdk14-1.38.jar"/>
+        <resource-root path="bcprov-jdk14-1.38.jar"/>
+        <resource-root path="bctsp-jdk14-1.38.jar"/>
+    </resources>
+    <dependencies>
+    </dependencies>
+</module>
