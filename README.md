@@ -2,6 +2,7 @@ primefaces-cookbook-osgi
 ========================
 
 Make work primefaces cookbook on various osgi containers (jboss, karaf, virgo) <br/>
+Note : primefaces coobook for osgi env. is just a fork from http://ova2.github.com/primefaces-cookbook/ and a pinch of osgi<br/>
 <br/>
 JBoss EAP 6.2 - working <br/>
 Apache Karaf  - not working (pb with el & jsf)<br/>
@@ -22,15 +23,15 @@ That's all. Then run JBoss and deploy the compiled wab...<br/>
 <br/>
 <br/>
 
-primefaces-cookbook-osgi on Apache Karaf :
-==========================================
+primefaces-cookbook-osgi on Karaf :
+===================================
 
 TODO<br/><br/>
 
 <br/>
 <br/>
-primefaces-cookbook-osgi on Eclipse Virgo :
-===========================================
+primefaces-cookbook-osgi on Virgo :
+===================================
 
 To make work this primefaces osgi showcase you need to deploy some bundle on the default Eclipse Virgo Tomcat server (tested one is 3.6.1).<br/><br/>
 
