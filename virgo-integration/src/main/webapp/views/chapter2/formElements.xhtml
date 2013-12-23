@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <h:outputText value="InputText"/>
+    <p:inputText required="true" label="InputText"/>
+
+    <h:outputText value="Spinner"/>
+    <p:spinner required="true" label="Spinner"/>
+
+    <h:outputText value="Disabled InputText"/>
+    <p:inputText label="Disabled InputText" disabled="true"/>
+
+    <h:outputText value="Spinner"/>
+    <p:spinner label="Spinner" disabled="true"/>
+
+    <h:outputText value="Textarea"/>
+    <p:inputTextarea required="true" label="Textarea"/>
+
+    <h:outputText value="Calendar"/>
+    <p:calendar required="true" showOn="both" label="Calendar"/>
+</ui:composition>

@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/templates/masterLayout.xhtml">
+    <ui:define name="chapterItem">
+
+        <h:outputText id="indicator" value="Enabled? - #{javaScriptExecController.enabled}"/>
+        
+        <p:menu id="menu" style="margin:20px 0 10px 0;">
+            <p:submenu label="JavaScript Libraries">
+                <p:menuitem value="jQuery" url="http://jquery.com"/>
+                <p:menuitem value="Yahoo UI" url="http://yuilibrary.com"/>
+                <p:menuitem value="Prototype" url="http://prototypejs.org"/>
+            </p:submenu>
+        </p:menu>
+        
+        <p:commandButton id="toggle1" value="Toggle Menuitems (server-side)"
+                         process="@this" update="indicator"
+                         actionListener="#{javaScriptExecController.toogleMenuitems}"/>
+        
+        <p:commandButton id="toggle2" value="Toggle Menuitems (client-side)"
+                         process="@this" update="indicator toggleScriptWrapper"
+                         actionListener="#{javaScriptExecController.toogleEnabled}"/>
+        
+        <h:panelGroup id="toggleScriptWrapper">
+            <script type="text/javascript">
+            /* <![CDATA[ */
+                if (#{facesContext.partialViewContext.ajaxRequest}) {
+                    $('#menu a').each(function() {
+                        if ($(this).attr('href')) {
+                            // disable item
+                            $(this).attr('data-oldhref', $(this).attr('href'))
+                                   .removeAttr('href').addClass('ui-state-disabled');
+                        } else {
+                            // enable item
+                            $(this).attr('href', $(this).attr('data-oldhref'))
+                                   .removeAttr('data-oldhref').removeClass('ui-state-disabled');                
+                        }
+                    });
+                }
+            /* ]]> */
+            </script>
+        </h:panelGroup>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, "Trebuchet MS", Verdana, sans-serif;
+    font-size: 12px;
+    padding: 0 !important;
+    margin: 0;
+}
+
+input,
+select,
+textarea,
+button,
+.ui-widget,
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button,
+.ui-widget-header,
+.ui-widget-content,
+.ui-widget-header .ui-widget-header,
+.ui-widget-content .ui-widget-content {
+    font-family: Arial, "Trebuchet MS", Verdana, sans-serif;
+    font-size: 12px !important;
+}
+
+#bookTree {
+    width: auto;
+}
+
+.ui-treenode {
+    padding: 2px 0 0;
+}
+
+.ui-chkbox {
+    vertical-align: middle;
+}
+
+/*
+.ui-selectonemenu {
+    display: block;
+}*/
+
+.ui-selectoneradio label,
+.ui-selectmanycheckbox label {
+    margin-top: 2px;
+}
+
+.logo {
+    margin: 10px 0 18px 0;
+}
+
+.chaptersMenuColumn {
+    vertical-align: top;
+    padding-left: 10px;
+}
+
+.chaptersContentColumn {
+    vertical-align: top;
+    padding: 120px 10px 0 40px;
+}
+
+.slogan {
+    position: absolute;
+    color: #A2A1A1;
+    font-weight: bold;
+    bottom: 30px;
+    right: 40px;
+}
+
+table .formLabel,
+table .formEdit {
+    vertical-align: middle;
+    padding: 2px 20px 2px 0;
+}
+
+table .formLabel {
+    padding: 2px 7px 2px 0;
+    text-align: right;
+    white-space: nowrap;
+    width: 1%;
+}
+
+table .formEdit input,
+table .formEdit textarea {
+    width: 160px;
+}

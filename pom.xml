@@ -11,5 +11,6 @@
     <modules>
         <module>jboss-integration</module>
         <module>karaf-standard-paxweb-integration</module>
+        <module>virgo-integration</module>
     </modules>
 </project>

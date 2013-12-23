@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/masterLayout.xhtml">
+    <ui:define name="chapterItem">
+        <h3 style="margin-top:0">Listing data with PickList</h3>
+        <p:growl id="growl" showDetail="true"/>
+
+        <script type="text/javascript">
+            function handleTransfer(e) {
+                alert(e.items);
+                alert(e.from);
+                alert(e.to);
+                alert(e.type);
+            }
+        </script>
+
+        <h:panelGrid columns="2" cellpadding="5">
+
+            <h:outputText value="Simple" />
+            <p:pickList id="simple" value="#{pickListController.countries}"
+                        var="country" itemLabel="#{country}" itemValue="#{country}" />
+
+            <h:outputText value="With Caption" />
+            <p:pickList id="withCaption" value="#{pickListController.countries}"
+                        var="country" itemLabel="#{country}" itemValue="#{country}">
+                <f:facet name="sourceCaption">Available</f:facet>
+                <f:facet name="targetCaption">Selected</f:facet>
+            </p:pickList>
+
+            <h:outputText value="With Animation and Controls" />
+            <p:pickList id="withAnimation" value="#{pickListController.countries}"
+                        showSourceControls="true" showTargetControls="true"
+                        effect="explode" effectSpeed="slow"
+                        var="country" itemLabel="#{country}" itemValue="#{country}" />
+
+            <h:outputText value="With POJO Support" />
+            <p:pickList id="pojoSupport" value="#{pickListController.cars}"
+                        var="car" itemLabel="#{car.name}" itemValue="#{car}">
+                <f:converter converterId="org.primefaces.cookbook.converter.CarConverter" />
+                <p:column>
+                    <p:graphicImage value="/resources/images/autocomplete/#{car.name}.png" width="100" height="70"/>
+                </p:column>
+                <p:column>
+                    #{car.name}
+                </p:column>
+            </p:pickList>
+
+            <h:outputText value="With Custom Javascript" />
+            <p:pickList id="withCustomScript" value="#{pickListController.countries}" onTransfer="handleTransfer(e)"
+                        var="country" itemLabel="#{country}" itemValue="#{country}" />
+
+            <p:commandButton value="hebele" ajax="false" />
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>

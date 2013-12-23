@@ -1,0 +1,33 @@
+#customInputStyles .ui-inputfield {
+    background: #ffffff;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #000000;
+}
+
+#customInputStyles .ui-inputfield.ui-state-focus {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#customInputStyles .ui-inputfield.ui-state-default {
+    background: none;
+    border: 1px inset;
+}
+
+#customInputStyles .ui-inputfield.ui-corner-all {
+    border-radius: 0;
+}
+
+#customInputStyles .ui-inputfield.ui-state-disabled,
+#customInputStyles .ui-state-disabled .ui-inputfield {
+    background-color: #8F8F8F;
+    border: solid 1px gray;
+}
+
+#customInputStyles .ui-inputfield.ui-state-error,
+#customInputStyles .ui-state-error .ui-inputfield {
+    background-color: #F43939;
+}
