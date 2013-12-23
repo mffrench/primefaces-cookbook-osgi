@@ -1,0 +1,22 @@
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.lowagie.itext
+Bundle-Name: com.lowagie.itext
+Bundle-Vendor: Lowagie.
+Bundle-Version: 2.1.7
+Import-Package:
+  org.bouncycastle.asn1;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.asn1.cmp;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.asn1.cms;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.asn1.ocsp;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.asn1.pkcs;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.asn1.tsp;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.asn1.x509;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.cms;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.crypto;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.crypto.engines;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.crypto.modes;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.crypto.paddings;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.crypto.params;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.jce.provider;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.ocsp;version="[1.38.0,1.40)";resolution:=optional,
+  org.bouncycastle.tsp;version="[1.38.0,1.40)";resolution:=optional
