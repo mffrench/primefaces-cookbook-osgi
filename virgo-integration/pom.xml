@@ -542,6 +542,7 @@
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>3.5</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
