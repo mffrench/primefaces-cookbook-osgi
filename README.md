@@ -52,6 +52,16 @@ rome:rome:1.0<br/>
 org.atmosphere:atmosphere-runtime:2.0.0<br/>
 org.primefaces:primefaces:3.5<br/><br/>
 
-That's all. Then run Eclipse Virgo and deploy the compiled wab...<br/>
+Running Eclipse Virgo<br/>
+
+default user/password : admin/springsource <br/>
+
+1. Console : <br/>
+ssh -p 2502 admin@localhost <br/>
+
+2. UI : <br/>
+Hit Url in browser http://localhost:8080/admin <br/>
+
+and deploy wab.
 <br/>
 <br/>
