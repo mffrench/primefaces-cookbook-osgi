@@ -56,6 +56,21 @@
         </developer>
     </developers>
 
+    <repositories>
+        <repository>
+            <id>nexus.echinopsii.net</id>
+            <name>echinopsii.net repository</name>
+            <url>http://nexus.echinopsii.net/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <build>
         <resources>
             <resource>
@@ -64,6 +79,14 @@
             </resource>
         </resources>
         <plugins>
+	        <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${java.version.source}</source>
+                    <target>${java.version.target}</target>
+                </configuration>
+	        </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -203,6 +226,7 @@
                             org.apache.commons.lang3.text.translate;version="3.1.0",
                             org.apache.commons.lang3.time;version="3.1.0",
                             org.apache.commons.lang3.tuple;version="3.1.0",
+                            org.atmosphere.cpr;version="2.0.0",
                             org.primefaces;version="3.5.0",
                             org.primefaces.application;version="3.5.0",
                             org.primefaces.component.accordionpanel;version="3.5.0",
