@@ -95,25 +95,25 @@
         </h:panelGrid>
 
         <p:contextMenu for="withContextMenu" nodeType="node">
-            <p:menuitem value="View" update="dialogPanel" icon="ui-icon-search" oncomplete="nodeDialog.show()"/>
+            <p:menuitem value="View" update="dialogPanel" icon="ui-icon-search" oncomplete="PF('nodeDialog').show()"/>
         </p:contextMenu>
 
         <p:contextMenu for="withContextMenu" nodeType="leaf">
-            <p:menuitem value="View" update="dialogPanel" icon="ui-icon-search" oncomplete="nodeDialog.show()"/>
-            <p:menuitem value="Delete" actionListener="#{treeTableController.deleteNode}" update="withContextMenu" icon="ui-icon-close"/>
+            <p:menuitem value="View" update="dialogPanel" icon="ui-icon-search" oncomplete="PF('nodeDialog').show()"/>
+            <p:menuitem value="Delete" actionListener="#{treeDataBean.deleteNode}" update="withContextMenu" icon="ui-icon-close"/>
         </p:contextMenu>
 
         <p:dialog header="Tree Node Detail" showEffect="fade" widgetVar="nodeDialog" modal="true">
             <p:outputPanel id="dialogPanel">
-                <h:panelGrid  columns="2" cellpadding="5" rendered="#{not empty treeDataController.selectedNode}">
+                <h:panelGrid  columns="2" cellpadding="5" rendered="#{not empty treeDataBean.selectedNode}">
                     <h:outputLabel for="name" value="Value: " />
-                    <h:outputText id="name" value="#{treeDataController.selectedNode.data}" />
+                    <h:outputText id="name" value="#{treeDataBean.selectedNode.data}" />
                 </h:panelGrid>
             </p:outputPanel>
         </p:dialog>
 
         <p:commandButton id="display" value="Display Selected Nodes" update="growl"
-                         actionListener="#{treeDataController.displaySelected}" />
+                         actionListener="#{treeDataBean.displaySelected}" />
 
     </ui:define>
 </ui:composition>

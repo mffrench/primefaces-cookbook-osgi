@@ -1,12 +1,11 @@
 package org.primefaces.cookbook.controller.chapter6;
 
-import org.primefaces.component.menuitem.MenuItem;
-import org.primefaces.component.submenu.Submenu;
+import org.primefaces.model.menu.DefaultMenuItem;
+import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.DefaultSubMenu;
+import org.primefaces.model.menu.MenuModel;
 
 import org.primefaces.cookbook.utils.FacesUtil;
-
-import org.primefaces.model.DefaultMenuModel;
-import org.primefaces.model.MenuModel;
 
 import java.io.Serializable;
 
@@ -14,7 +13,6 @@ import javax.annotation.PostConstruct;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.ActionEvent;
 
 
 /**
@@ -34,54 +32,51 @@ public class ProgrammaticMenuController implements Serializable {
         model = new DefaultMenuModel();
 
         // first submenu
-        Submenu submenu = new Submenu();
+        DefaultSubMenu submenu = new DefaultSubMenu();
         submenu.setLabel("JavaScript Libraries");
 
         // menu items
-        MenuItem item = new MenuItem();
+        DefaultMenuItem item = new DefaultMenuItem();
         item.setValue("jQuery");
         item.setUrl("http://jquery.com");
-        submenu.getChildren().add(item);
+        submenu.addElement(item);
 
-        item = new MenuItem();
+        item = new DefaultMenuItem();
         item.setValue("Yahoo UI");
         item.setUrl("http://yuilibrary.com");
-        submenu.getChildren().add(item);
+        submenu.addElement(item);
 
-        item = new MenuItem();
+        item = new DefaultMenuItem();
         item.setValue("Prototype");
         item.setUrl("http://prototypejs.org");
-        submenu.getChildren().add(item);
+        submenu.addElement(item);
 
-        model.addSubmenu(submenu);
+        model.addElement(submenu);
 
         // second submenu
-        submenu = new Submenu();
+        submenu = new DefaultSubMenu();
         submenu.setLabel("Operations");
 
         // menu items
-        item = new MenuItem();
+        item = new DefaultMenuItem();
         item.setValue("Save");
-        item.addActionListener(FacesUtil.createMethodActionListener("#{positionedMenuController.save}", Void.class,
-                new Class[] { ActionEvent.class }));
+        item.setCommand("#{positionedMenuController.save}");
         item.setUpdate("growl");
-        submenu.getChildren().add(item);
+        submenu.addElement(item);
 
-        item = new MenuItem();
+        item = new DefaultMenuItem();
         item.setValue("Update");
-        item.addActionListener(FacesUtil.createMethodActionListener("#{positionedMenuController.update}", Void.class,
-                new Class[] { ActionEvent.class }));
+        item.setCommand("#{positionedMenuController.update}");
         item.setUpdate("growl");
-        submenu.getChildren().add(item);
+        submenu.addElement(item);
 
-        item = new MenuItem();
+        item = new DefaultMenuItem();
         item.setValue("Delete");
-        item.addActionListener(FacesUtil.createMethodActionListener("#{positionedMenuController.delete}", Void.class,
-                new Class[] { ActionEvent.class }));
+        item.setCommand("#{positionedMenuController.delete}");
         item.setUpdate("growl");
-        submenu.getChildren().add(item);
+        submenu.addElement(item);
 
-        model.addSubmenu(submenu);
+        model.addElement(submenu);
     }
 
     public MenuModel getModel() {

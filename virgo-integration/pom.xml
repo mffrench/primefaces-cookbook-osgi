@@ -3,12 +3,12 @@
     <!-- $Id: pom.xml 1191 2012-05-10 21:22:19Z ovaraksin@gmail.com $ -->
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.primefaces.cookbook</groupId>
-    <artifactId>primefaces.showcase.osgi.virgo</artifactId>
+    <artifactId>showcase</artifactId>
     <packaging>war</packaging>
-    <version>0.1.0</version>
-    <name>Primefaces showcase for virgo</name>
+    <version>2.0.0</version>
+    <name>showcase</name>
     <description>
-        <![CDATA[PrimeFaces Cookbook Showcase.]]>
+        <![CDATA[PrimeFaces Cookbook Showcase (Second Edition).]]>
     </description>
     <url>https://github.com/ova2/primefaces-cookbook</url>
 
@@ -20,6 +20,26 @@
             <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
+
+    <repositories>
+        <repository>
+            <id>nexus.echinopsii.net</id>
+            <name>echinopsii.net repository</name>
+            <url>http://nexus.echinopsii.net/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+        </repository>
+    </repositories>
 
     <issueManagement>
         <system>GitHub</system>
@@ -33,7 +53,7 @@
         <developerConnection>git@github.com:ova2/primefaces-cookbook.git</developerConnection>
         <url>https://ova2@github.com/ova2/primefaces-cookbook.git</url>
     </scm>
-    
+
     <developers>
         <developer>
             <id>varaksin</id>
@@ -64,48 +84,39 @@
             </resource>
         </resources>
         <plugins>
+            <!--
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.3.0.M0</version>
+                <configuration>
+                    <webAppConfig>
+                        <contextPath>/pf-cookbook</contextPath>
+                        <overrideDescriptor>src/main/webapp/WEB-INF/web-overwrite.xml</overrideDescriptor>
+                    </webAppConfig>
+                    <webXml>${project.build.directory}/classes/WEB-INF/web.xml</webXml>
+                    <webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>
+                    <scanIntervalSeconds>1</scanIntervalSeconds>
+                    <stopPort>9966</stopPort>
+                    <stopKey>foo</stopKey>
+                    <jettyConfig>src/main/webapp/WEB-INF/jetty-env.xml</jettyConfig>
+                    <contextXml>src/main/webapp/WEB-INF/jetty-context.xml</contextXml>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jboss.weld.servlet</groupId>
+                        <artifactId>weld-servlet</artifactId>
+                        <version>2.2.5.Final</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.5</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/webapp-resources/resources</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${project.basedir}/src/main/webapp/resources</directory>
-                                    <filtering>true</filtering>
-                                    <includes>
-                                        <include>**/*.css</include>
-                                        <include>**/*.js</include>
-                                    </includes>                                    
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>                    
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>2.4.0</version>
-                <executions>
-                    <execution>
-                        <id>bundle-manifest</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>manifest</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
                 <configuration>
-                    <supportedProjectTypes>
+		    <supportedProjectTypes>
                         <supportedProjectType>jar</supportedProjectType>
                         <supportedProjectType>bundle</supportedProjectType>
                         <supportedProjectType>war</supportedProjectType>
@@ -184,9 +195,7 @@
                             javax.faces.view;version="2.1.0",
                             javax.faces.view.facelets;version="2.1.0",
                             javax.faces.webapp;version="2.1.0",
-                            javax.servlet.jsp.jstl.tlv;version="1.2.0",
-                            javax.servlet;version="[3.0.0,4)",
-                            org.apache.commons.fileupload;version="1.3.0",
+			                org.apache.commons.fileupload;version="1.3.0",
                             org.apache.commons.fileupload.disk;version="1.3.0",
                             org.apache.commons.fileupload.portlet;version="1.3.0",
                             org.apache.commons.fileupload.servlet;version="1.3.0",
@@ -203,195 +212,177 @@
                             org.apache.commons.lang3.text.translate;version="3.1.0",
                             org.apache.commons.lang3.time;version="3.1.0",
                             org.apache.commons.lang3.tuple;version="3.1.0",
-                            org.primefaces;version="3.5.0",
-                            org.primefaces.application;version="3.5.0",
-                            org.primefaces.component.accordionpanel;version="3.5.0",
-                            org.primefaces.component.ajaxstatus;version="3.5.0",
-                            org.primefaces.component.api;version="3.5.0",
-                            org.primefaces.component.autocomplete;version="3.5.0",
-                            org.primefaces.component.behavior.ajax;version="3.5.0",
-                            org.primefaces.component.behavior.printer;version="3.5.0",
-                            org.primefaces.component.blockui;version="3.5.0",
-                            org.primefaces.component.breadcrumb;version="3.5.0",
-                            org.primefaces.component.button;version="3.5.0",
-                            org.primefaces.component.calendar;version="3.5.0",
-                            org.primefaces.component.captcha;version="3.5.0",
-                            org.primefaces.component.carousel;version="3.5.0",
-                            org.primefaces.component.celleditor;version="3.5.0",
-                            org.primefaces.component.chart;version="3.5.0",
-                            org.primefaces.component.chart.bar;version="3.5.0",
-                            org.primefaces.component.chart.bubble;version="3.5.0",
-                            org.primefaces.component.chart.donut;version="3.5.0",
-                            org.primefaces.component.chart.line;version="3.5.0",
-                            org.primefaces.component.chart.metergauge;version="3.5.0",
-                            org.primefaces.component.chart.ohlc;version="3.5.0",
-                            org.primefaces.component.chart.pie;version="3.5.0",
-                            org.primefaces.component.clock;version="3.5.0",
-                            org.primefaces.component.collector;version="3.5.0",
-                            org.primefaces.component.colorpicker;version="3.5.0",
-                            org.primefaces.component.column;version="3.5.0",
-                            org.primefaces.component.columngroup;version="3.5.0",
-                            org.primefaces.component.columns;version="3.5.0",
-                            org.primefaces.component.commandbutton;version="3.5.0",
-                            org.primefaces.component.commandlink;version="3.5.0",
-                            org.primefaces.component.confirmdialog;version="3.5.0",
-                            org.primefaces.component.contextmenu;version="3.5.0",
-                            org.primefaces.component.dashboard;version="3.5.0",
-                            org.primefaces.component.datagrid;version="3.5.0",
-                            org.primefaces.component.datalist;version="3.5.0",
-                            org.primefaces.component.datatable;version="3.5.0",
-                            org.primefaces.component.datatable.feature;version="3.5.0",
-                            org.primefaces.component.defaultcommand;version="3.5.0",
-                            org.primefaces.component.dialog;version="3.5.0",
-                            org.primefaces.component.dnd;version="3.5.0",
-                            org.primefaces.component.dock;version="3.5.0",
-                            org.primefaces.component.editor;version="3.5.0",
-                            org.primefaces.component.effect;version="3.5.0",
-                            org.primefaces.component.export;version="3.5.0",
-                            org.primefaces.component.feedreader;version="3.5.0",
-                            org.primefaces.component.fieldset;version="3.5.0",
-                            org.primefaces.component.filedownload;version="3.5.0",
-                            org.primefaces.component.fileupload;version="3.5.0",
-                            org.primefaces.component.focus;version="3.5.0",
-                            org.primefaces.component.galleria;version="3.5.0",
-                            org.primefaces.component.gmap;version="3.5.0",
-                            org.primefaces.component.graphicimage;version="3.5.0",
-                            org.primefaces.component.growl;version="3.5.0",
-                            org.primefaces.component.hotkey;version="3.5.0",
-                            org.primefaces.component.idlemonitor;version="3.5.0",
-                            org.primefaces.component.imagecompare;version="3.5.0",
-                            org.primefaces.component.imagecropper;version="3.5.0",
-                            org.primefaces.component.imageswitch;version="3.5.0",
-                            org.primefaces.component.inplace;version="3.5.0",
-                            org.primefaces.component.inputmask;version="3.5.0",
-                            org.primefaces.component.inputtext;version="3.5.0",
-                            org.primefaces.component.inputtextarea;version="3.5.0",
-                            org.primefaces.component.keyboard;version="3.5.0",
-                            org.primefaces.component.layout;version="3.5.0",
-                            org.primefaces.component.lightbox;version="3.5.0",
-                            org.primefaces.component.log;version="3.5.0",
-                            org.primefaces.component.media;version="3.5.0",
-                            org.primefaces.component.media.player;version="3.5.0",
-                            org.primefaces.component.megamenu;version="3.5.0",
-                            org.primefaces.component.menu;version="3.5.0",
-                            org.primefaces.component.menubar;version="3.5.0",
-                            org.primefaces.component.menubutton;version="3.5.0",
-                            org.primefaces.component.menuitem;version="3.5.0",
-                            org.primefaces.component.message;version="3.5.0",
-                            org.primefaces.component.messages;version="3.5.0",
-                            org.primefaces.component.mindmap;version="3.5.0",
-                            org.primefaces.component.notificationbar;version="3.5.0",
-                            org.primefaces.component.orderlist;version="3.5.0",
-                            org.primefaces.component.outputlabel;version="3.5.0",
-                            org.primefaces.component.outputpanel;version="3.5.0",
-                            org.primefaces.component.overlaypanel;version="3.5.0",
-                            org.primefaces.component.paginator;version="3.5.0",
-                            org.primefaces.component.panel;version="3.5.0",
-                            org.primefaces.component.panelgrid;version="3.5.0",
-                            org.primefaces.component.panelmenu;version="3.5.0",
-                            org.primefaces.component.password;version="3.5.0",
-                            org.primefaces.component.photocam;version="3.5.0",
-                            org.primefaces.component.picklist;version="3.5.0",
-                            org.primefaces.component.poll;version="3.5.0",
-                            org.primefaces.component.progressbar;version="3.5.0",
-                            org.primefaces.component.radiobutton;version="3.5.0",
-                            org.primefaces.component.rating;version="3.5.0",
-                            org.primefaces.component.remotecommand;version="3.5.0",
-                            org.primefaces.component.resetinput;version="3.5.0",
-                            org.primefaces.component.resizable;version="3.5.0",
-                            org.primefaces.component.resources;version="3.5.0",
-                            org.primefaces.component.ring;version="3.5.0",
-                            org.primefaces.component.row;version="3.5.0",
-                            org.primefaces.component.roweditor;version="3.5.0",
-                            org.primefaces.component.rowexpansion;version="3.5.0",
-                            org.primefaces.component.rowtoggler;version="3.5.0",
-                            org.primefaces.component.schedule;version="3.5.0",
-                            org.primefaces.component.scrollpanel;version="3.5.0",
-                            org.primefaces.component.selectbooleanbutton;version="3.5.0",
-                            org.primefaces.component.selectbooleancheckbox;version="3.5.0",
-                            org.primefaces.component.selectcheckboxmenu;version="3.5.0",
-                            org.primefaces.component.selectmanybutton;version="3.5.0",
-                            org.primefaces.component.selectmanycheckbox;version="3.5.0",
-                            org.primefaces.component.selectmanymenu;version="3.5.0",
-                            org.primefaces.component.selectonebutton;version="3.5.0",
-                            org.primefaces.component.selectonelistbox;version="3.5.0",
-                            org.primefaces.component.selectonemenu;version="3.5.0",
-                            org.primefaces.component.selectoneradio;version="3.5.0",
-                            org.primefaces.component.separator;version="3.5.0",
-                            org.primefaces.component.slidemenu;version="3.5.0",
-                            org.primefaces.component.slider;version="3.5.0",
-                            org.primefaces.component.socket;version="3.5.0",
-                            org.primefaces.component.spacer;version="3.5.0",
-                            org.primefaces.component.spinner;version="3.5.0",
-                            org.primefaces.component.splitbutton;version="3.5.0",
-                            org.primefaces.component.stack;version="3.5.0",
-                            org.primefaces.component.submenu;version="3.5.0",
-                            org.primefaces.component.subtable;version="3.5.0",
-                            org.primefaces.component.summaryrow;version="3.5.0",
-                            org.primefaces.component.tabmenu;version="3.5.0",
-                            org.primefaces.component.tabview;version="3.5.0",
-                            org.primefaces.component.tagcloud;version="3.5.0",
-                            org.primefaces.component.terminal;version="3.5.0",
-                            org.primefaces.component.themeswitcher;version="3.5.0",
-                            org.primefaces.component.tieredmenu;version="3.5.0",
-                            org.primefaces.component.toolbar;version="3.5.0",
-                            org.primefaces.component.tooltip;version="3.5.0",
-                            org.primefaces.component.tree;version="3.5.0",
-                            org.primefaces.component.treetable;version="3.5.0",
-                            org.primefaces.component.watermark;version="3.5.0",
-                            org.primefaces.component.wizard;version="3.5.0",
-                            org.primefaces.context;version="3.5.0",
-                            org.primefaces.event;version="3.5.0",
-                            org.primefaces.event.data;version="3.5.0",
-                            org.primefaces.event.map;version="3.5.0",
-                            org.primefaces.facelets;version="3.5.0",
-                            org.primefaces.json;version="3.5.0",
-                            org.primefaces.lifecycle;version="3.5.0",
-                            org.primefaces.model;version="3.5.0",
-                            org.primefaces.model.chart;version="3.5.0",
-                            org.primefaces.model.filter;version="3.5.0",
-                            org.primefaces.model.map;version="3.5.0",
-                            org.primefaces.model.mindmap;version="3.5.0",
-                            org.primefaces.model.tagcloud;version="3.5.0",
-                            org.primefaces.push;version="3.5.0",
-                            org.primefaces.renderkit;version="3.5.0",
-                            org.primefaces.util;version="3.5.0",
-                            org.primefaces.visit;version="3.5.0",
-                            org.primefaces.webapp;version="3.5.0",
-                            org.primefaces.webapp.filter;version="3.5.0",
+                            org.atmosphere.cpr;version="2.0.0",
+                            org.primefaces;version="5.2.0",
+                            org.primefaces.application;version="5.2.0",
+                            org.primefaces.component.accordionpanel;version="5.2.0",
+                            org.primefaces.component.ajaxstatus;version="5.2.0",
+                            org.primefaces.component.api;version="5.2.0",
+                            org.primefaces.component.autocomplete;version="5.2.0",
+                            org.primefaces.component.behavior.ajax;version="5.2.0",
+                            org.primefaces.component.behavior.printer;version="5.2.0",
+                            org.primefaces.component.blockui;version="5.2.0",
+                            org.primefaces.component.breadcrumb;version="5.2.0",
+                            org.primefaces.component.button;version="5.2.0",
+                            org.primefaces.component.calendar;version="5.2.0",
+                            org.primefaces.component.captcha;version="5.2.0",
+                            org.primefaces.component.carousel;version="5.2.0",
+                            org.primefaces.component.celleditor;version="5.2.0",
+                            org.primefaces.component.chart;version="5.2.0",
+                            org.primefaces.component.chart.bar;version="5.2.0",
+                            org.primefaces.component.chart.bubble;version="5.2.0",
+                            org.primefaces.component.chart.donut;version="5.2.0",
+                            org.primefaces.component.chart.line;version="5.2.0",
+                            org.primefaces.component.chart.metergauge;version="5.2.0",
+                            org.primefaces.component.chart.ohlc;version="5.2.0",
+                            org.primefaces.component.chart.pie;version="5.2.0",
+                            org.primefaces.component.clock;version="5.2.0",
+                            org.primefaces.component.collector;version="5.2.0",
+                            org.primefaces.component.colorpicker;version="5.2.0",
+                            org.primefaces.component.column;version="5.2.0",
+                            org.primefaces.component.columngroup;version="5.2.0",
+                            org.primefaces.component.columns;version="5.2.0",
+                            org.primefaces.component.commandbutton;version="5.2.0",
+                            org.primefaces.component.commandlink;version="5.2.0",
+                            org.primefaces.component.confirmdialog;version="5.2.0",
+                            org.primefaces.component.contextmenu;version="5.2.0",
+                            org.primefaces.component.dashboard;version="5.2.0",
+                            org.primefaces.component.datagrid;version="5.2.0",
+                            org.primefaces.component.datalist;version="5.2.0",
+                            org.primefaces.component.datatable;version="5.2.0",
+                            org.primefaces.component.datatable.feature;version="5.2.0",
+                            org.primefaces.component.defaultcommand;version="5.2.0",
+                            org.primefaces.component.dialog;version="5.2.0",
+                            org.primefaces.component.dnd;version="5.2.0",
+                            org.primefaces.component.dock;version="5.2.0",
+                            org.primefaces.component.editor;version="5.2.0",
+                            org.primefaces.component.effect;version="5.2.0",
+                            org.primefaces.component.export;version="5.2.0",
+                            org.primefaces.component.feedreader;version="5.2.0",
+                            org.primefaces.component.fieldset;version="5.2.0",
+                            org.primefaces.component.filedownload;version="5.2.0",
+                            org.primefaces.component.fileupload;version="5.2.0",
+                            org.primefaces.component.focus;version="5.2.0",
+                            org.primefaces.component.galleria;version="5.2.0",
+                            org.primefaces.component.gmap;version="5.2.0",
+                            org.primefaces.component.graphicimage;version="5.2.0",
+                            org.primefaces.component.growl;version="5.2.0",
+                            org.primefaces.component.hotkey;version="5.2.0",
+                            org.primefaces.component.idlemonitor;version="5.2.0",
+                            org.primefaces.component.imagecompare;version="5.2.0",
+                            org.primefaces.component.imagecropper;version="5.2.0",
+                            org.primefaces.component.imageswitch;version="5.2.0",
+                            org.primefaces.component.inplace;version="5.2.0",
+                            org.primefaces.component.inputmask;version="5.2.0",
+                            org.primefaces.component.inputtext;version="5.2.0",
+                            org.primefaces.component.inputtextarea;version="5.2.0",
+                            org.primefaces.component.keyboard;version="5.2.0",
+                            org.primefaces.component.layout;version="5.2.0",
+                            org.primefaces.component.lightbox;version="5.2.0",
+                            org.primefaces.component.log;version="5.2.0",
+                            org.primefaces.component.media;version="5.2.0",
+                            org.primefaces.component.media.player;version="5.2.0",
+                            org.primefaces.component.megamenu;version="5.2.0",
+                            org.primefaces.component.menu;version="5.2.0",
+                            org.primefaces.component.menubar;version="5.2.0",
+                            org.primefaces.component.menubutton;version="5.2.0",
+                            org.primefaces.component.menuitem;version="5.2.0",
+                            org.primefaces.component.message;version="5.2.0",
+                            org.primefaces.component.messages;version="5.2.0",
+                            org.primefaces.component.mindmap;version="5.2.0",
+                            org.primefaces.component.notificationbar;version="5.2.0",
+                            org.primefaces.component.orderlist;version="5.2.0",
+                            org.primefaces.component.outputlabel;version="5.2.0",
+                            org.primefaces.component.outputpanel;version="5.2.0",
+                            org.primefaces.component.overlaypanel;version="5.2.0",
+                            org.primefaces.component.paginator;version="5.2.0",
+                            org.primefaces.component.panel;version="5.2.0",
+                            org.primefaces.component.panelgrid;version="5.2.0",
+                            org.primefaces.component.panelmenu;version="5.2.0",
+                            org.primefaces.component.password;version="5.2.0",
+                            org.primefaces.component.photocam;version="5.2.0",
+                            org.primefaces.component.picklist;version="5.2.0",
+                            org.primefaces.component.poll;version="5.2.0",
+                            org.primefaces.component.progressbar;version="5.2.0",
+                            org.primefaces.component.radiobutton;version="5.2.0",
+                            org.primefaces.component.rating;version="5.2.0",
+                            org.primefaces.component.remotecommand;version="5.2.0",
+                            org.primefaces.component.resetinput;version="5.2.0",
+                            org.primefaces.component.resizable;version="5.2.0",
+                            org.primefaces.component.resources;version="5.2.0",
+                            org.primefaces.component.ring;version="5.2.0",
+                            org.primefaces.component.row;version="5.2.0",
+                            org.primefaces.component.roweditor;version="5.2.0",
+                            org.primefaces.component.rowexpansion;version="5.2.0",
+                            org.primefaces.component.rowtoggler;version="5.2.0",
+                            org.primefaces.component.schedule;version="5.2.0",
+                            org.primefaces.component.scrollpanel;version="5.2.0",
+                            org.primefaces.component.selectbooleanbutton;version="5.2.0",
+                            org.primefaces.component.selectbooleancheckbox;version="5.2.0",
+                            org.primefaces.component.selectcheckboxmenu;version="5.2.0",
+                            org.primefaces.component.selectmanybutton;version="5.2.0",
+                            org.primefaces.component.selectmanycheckbox;version="5.2.0",
+                            org.primefaces.component.selectmanymenu;version="5.2.0",
+                            org.primefaces.component.selectonebutton;version="5.2.0",
+                            org.primefaces.component.selectonelistbox;version="5.2.0",
+                            org.primefaces.component.selectonemenu;version="5.2.0",
+                            org.primefaces.component.selectoneradio;version="5.2.0",
+                            org.primefaces.component.separator;version="5.2.0",
+                            org.primefaces.component.slidemenu;version="5.2.0",
+                            org.primefaces.component.slider;version="5.2.0",
+                            org.primefaces.component.socket;version="5.2.0",
+                            org.primefaces.component.spacer;version="5.2.0",
+                            org.primefaces.component.spinner;version="5.2.0",
+                            org.primefaces.component.splitbutton;version="5.2.0",
+                            org.primefaces.component.stack;version="5.2.0",
+                            org.primefaces.component.submenu;version="5.2.0",
+                            org.primefaces.component.subtable;version="5.2.0",
+                            org.primefaces.component.summaryrow;version="5.2.0",
+                            org.primefaces.component.tabmenu;version="5.2.0",
+                            org.primefaces.component.tabview;version="5.2.0",
+                            org.primefaces.component.tagcloud;version="5.2.0",
+                            org.primefaces.component.terminal;version="5.2.0",
+                            org.primefaces.component.themeswitcher;version="5.2.0",
+                            org.primefaces.component.tieredmenu;version="5.2.0",
+                            org.primefaces.component.toolbar;version="5.2.0",
+                            org.primefaces.component.tooltip;version="5.2.0",
+                            org.primefaces.component.tree;version="5.2.0",
+                            org.primefaces.component.treetable;version="5.2.0",
+                            org.primefaces.component.watermark;version="5.2.0",
+                            org.primefaces.component.wizard;version="5.2.0",
+                            org.primefaces.context;version="5.2.0",
+                            org.primefaces.event;version="5.2.0",
+                            org.primefaces.event.data;version="5.2.0",
+                            org.primefaces.event.map;version="5.2.0",
+                            org.primefaces.facelets;version="5.2.0",
+                            org.primefaces.json;version="5.2.0",
+                            org.primefaces.lifecycle;version="5.2.0",
+                            org.primefaces.model;version="5.2.0",
+                            org.primefaces.model.chart;version="5.2.0",
+                            org.primefaces.model.filter;version="5.2.0",
+                            org.primefaces.model.map;version="5.2.0",
+                            org.primefaces.model.mindmap;version="5.2.0",
+                            org.primefaces.model.tagcloud;version="5.2.0",
+                            org.primefaces.push;version="5.2.0",
+                            org.primefaces.renderkit;version="5.2.0",
+                            org.primefaces.util;version="5.2.0",
+                            org.primefaces.visit;version="5.2.0",
+                            org.primefaces.webapp;version="5.2.0",
+                            org.primefaces.webapp.filter;version="5.2.0",
                             com.sun.el;version="2.2.1.b05"
                         </Import-Package>
                         <Export-Package/>
                     </instructions>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
-                <executions>
-                    <execution>
-                        <id>war</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>war</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
                     <webappDirectory>${project.build.directory}/webapp</webappDirectory>
                     <warSourceDirectory>${project.basedir}/src/main/webapp</warSourceDirectory>
                     <warSourceExcludes>**/resources/**/*.css,**/resources/**/*.js</warSourceExcludes>
-                    <packagingExcludes>**/overrideweb-mojarra.xml,**/overrideweb-myfaces.xml,WEB-INF/web.xml</packagingExcludes>
                     <webResources>
                         <resource>
                             <directory>${project.build.directory}/webapp-resources</directory>
                         </resource>
                     </webResources>
+                    <packagingExcludes>**/web-overwrite.xml,WEB-INF/web.xml</packagingExcludes>
                     <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
-                    <filters>
-                        <filter>${basedir}/src/main/filter/${jsf.impl}.properties</filter>
-                    </filters>
                     <nonFilteredFileExtensions>
                         <nonFilteredFileExtension>jpeg</nonFilteredFileExtension>
                         <nonFilteredFileExtension>jpg</nonFilteredFileExtension>
@@ -404,22 +395,175 @@
                         <nonFilteredFileExtension>cab</nonFilteredFileExtension>
                     </nonFilteredFileExtensions>
                     <archive>
-                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifest>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <X-Compile-Source>${java.version.source}</X-Compile-Source>
+                            <X-Compile-Target>${java.version.target}</X-Compile-Target>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
-
-            <!-- JBoss AS plugin to deploy war -->
             <plugin>
-                <groupId>org.jboss.as.plugins</groupId>
-                <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>7.1.0.Final</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.6.1</version>
             </plugin>
-                        
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <source>${java.version.source}</source>
+                    <target>${java.version.target}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <optimize>false</optimize>
+                    <debug>true</debug>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.3</version>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <useProjectReferences>false</useProjectReferences>
+                    <downloadSources>true</downloadSources>
+                    <wtpversion>2.0</wtpversion>
+                    <classpathContainers>
+                        <classpathContainer>
+                            org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6
+                        </classpathContainer>
+                    </classpathContainers>
+                    <packaging>${project.packaging}</packaging>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-idea-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <exclude>target</exclude>
+                    <downloadSources>true</downloadSources>
+                    <jdkLevel>${java.version.source}</jdkLevel>
+                    <jdkName>${java.version.target}</jdkName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.3.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifest>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <X-Compile-Source>${java.version.source}</X-Compile-Source>
+                            <X-Compile-Target>${java.version.target}</X-Compile-Target>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.8</version>
+                <configuration>
+                    <source>${java.version.source}</source>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                    <quiet>true</quiet>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.11</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/webapp-resources/resources</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/webapp/resources</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>**/*.css</include>
+                                        <include>**/*.js</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-java-files</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/java</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.primefaces.extensions</groupId>
                 <artifactId>resources-optimizer-maven-plugin</artifactId>
-                <version>0.6</version>
+                <version>1.1.0</version>
                 <executions>
                     <execution>
                         <id>optimize</id>
@@ -435,41 +579,21 @@
                             <inputDir>${project.build.directory}/webapp-resources</inputDir>
                         </resourcesSet>
                     </resourcesSets>
-                </configuration>                
+                </configuration>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
         <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <version>2.2.9</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>${jsf.group}</groupId>
-            <artifactId>${jsf.artifact}-api</artifactId>
-            <version>${jsf.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>jstl</groupId>
-                    <artifactId>jstl</artifactId>
-                </exclusion>
-            </exclusions>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>${jsf.group}</groupId>
-            <artifactId>${jsf.artifact}-impl</artifactId>
-            <version>${jsf.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>jstl</groupId>
-                    <artifactId>jstl</artifactId>
-                </exclusion>
-            </exclusions>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.el</groupId>
@@ -477,12 +601,14 @@
             <version>2.2</version>
             <scope>provided</scope>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>el-impl</artifactId>
-            <version>2.2.1-b05</version>
-            <scope>provided</scope>
+            <version>2.2</version>
         </dependency>
+        -->
+
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>jsr250-api</artifactId>
@@ -490,69 +616,92 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.1</version>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.1.0.Final</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>1.1</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.annotation</groupId>
+                    <artifactId>jsr250-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.javaee-api</groupId>
+            <artifactId>javax.annotation</artifactId>
+            <version>3.1.2</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>rome</groupId>
             <artifactId>rome</artifactId>
             <version>1.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.servicemix.bundles</groupId>
-            <artifactId>org.apache.servicemix.bundles.poi</artifactId>
-            <version>3.9_2</version>
-            <scope>provided</scope>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.7</version>
         </dependency>
         <dependency>
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
-            <version>2.1.7</version>
-            <scope>provided</scope>
+            <version>1.4.8</version>
         </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>1.3</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>3.5</version>
-            <scope>provided</scope>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>1.8.1</version>
         </dependency>
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>primefaces-extensions</artifactId>
-            <version>0.7.1</version>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>resources-codemirror</artifactId>
-            <version>0.7.1</version>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>5.2</version>
         </dependency>
         <dependency>
             <groupId>org.primefaces.themes</groupId>
@@ -565,12 +714,28 @@
         <profile>
             <id>myfaces</id>
             <properties>
-                <jsf.impl>myfaces</jsf.impl>
-                <jsf.displayname>MyFaces</jsf.displayname>
-                <jsf.group>org.apache.myfaces.core</jsf.group>
-                <jsf.artifact>myfaces</jsf.artifact>
-                <jsf.version>2.1.10</jsf.version>
+                <jsf-impl>myfaces</jsf-impl>
+                <jsf-version>${myfaces.version}</jsf-version>
+                <!--
+                <jsf-listener>org.apache.myfaces.webapp.StartupServletContextListener</jsf-listener>
+                -->
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.myfaces.core</groupId>
+                    <artifactId>myfaces-api</artifactId>
+                    <version>${myfaces.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+                <!--
+                <dependency>
+                    <groupId>org.apache.myfaces.core</groupId>
+                    <artifactId>myfaces-impl</artifactId>
+                    <version>${myfaces.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+                -->
+            </dependencies>
         </profile>
         <profile>
             <id>mojarra</id>
@@ -578,12 +743,28 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <jsf.impl>mojarra</jsf.impl>
-                <jsf.displayname>Mojarra</jsf.displayname>
-                <jsf.group>com.sun.faces</jsf.group>
-                <jsf.artifact>jsf</jsf.artifact>
-                <jsf.version>2.1.26</jsf.version>
+                <jsf-impl>mojarra</jsf-impl>
+                <jsf-version>${mojarra.version}</jsf-version>
+                <!--
+                <jsf-listener>com.sun.faces.config.ConfigureListener</jsf-listener>
+                -->
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.sun.faces</groupId>
+                    <artifactId>jsf-api</artifactId>
+                    <version>${mojarra.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+                <!--
+                <dependency>
+                    <groupId>com.sun.faces</groupId>
+                    <artifactId>jsf-impl</artifactId>
+                    <version>${mojarra.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+                -->
+            </dependencies>
         </profile>
     </profiles>
 
@@ -591,7 +772,9 @@
         <java.version.source>1.6</java.version.source>
         <java.version.target>1.6</java.version.target>
         <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
-        <primefaces.theme.version>1.0.9</primefaces.theme.version>
+
+        <mojarra.version>2.2.11</mojarra.version>
+        <myfaces.version>2.2.4</myfaces.version>
     </properties>
 </project>
  

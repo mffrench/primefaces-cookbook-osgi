@@ -63,7 +63,8 @@
                 </p:column>
                 <f:facet name="footer">
                     <p:commandButton value="View" icon="ui-icon-search"
-                                     update=":mainForm:displaySingle" oncomplete="dialogSingle.show()"/>
+                                     update=":mainForm:displaySingle" oncomplete="PF('dialogSingle').show()">
+                     </p:commandButton>
                 </f:facet>
             </p:treeTable>
 
@@ -85,7 +86,7 @@
                 </p:column>
                 <f:facet name="footer">
                     <p:commandButton value="View" icon="ui-icon-search"
-                                     update=":mainForm:displayMultiple" oncomplete="dialogMultiple.show()"/>
+                                     update=":mainForm:displayMultiple" oncomplete="PF('dialogMultiple').show()"/>
                 </f:facet>
             </p:treeTable>
 
@@ -158,11 +159,11 @@
         </p:dialog>
 
         <p:contextMenu for="withContextMenu" nodeType="node">
-            <p:menuitem value="View" update="dialogPanel" icon="ui-icon-search" oncomplete="nodeDialog.show()"/>
+            <p:menuitem value="View" update="dialogPanel" icon="ui-icon-search" oncomplete="PF('nodeDialog').show()"/>
         </p:contextMenu>
 
         <p:contextMenu for="withContextMenu" nodeType="leaf">
-            <p:menuitem value="View" update="dialogPanel" icon="ui-icon-search" oncomplete="nodeDialog.show()"/>
+            <p:menuitem value="View" update="dialogPanel" icon="ui-icon-search" oncomplete="PF('nodeDialog').show()"/>
             <p:menuitem value="Delete" actionListener="#{treeTableController.deleteNode}" update="withContextMenu" icon="ui-icon-close"/>
         </p:contextMenu>
 
