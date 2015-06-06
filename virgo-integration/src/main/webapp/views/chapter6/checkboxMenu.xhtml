@@ -22,7 +22,8 @@
             <f:converter converterId="org.primefaces.cookbook.converter.LocaleConverter"/>
         </p:selectCheckboxMenu>
 
-        <p:commandButton value="Submit" update="display" oncomplete="dlg.show()"
+        <p:commandButton value="Submit" update="display"
+                         oncomplete="PF('dlg').show()"
                          style="margin-top:20px; display:block;"/>
 
         <p:dialog header="Selected colors and languages" widgetVar="dlg">

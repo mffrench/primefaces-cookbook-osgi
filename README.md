@@ -37,20 +37,26 @@ To make work this primefaces osgi showcase you need to deploy some bundle on the
 
 Bellow the maven path of these bundle :<br/><br/>
 
-commons-codec:commons-codec:1.5<br/>
-org.apache.servicemix.bundles:org.apache.servicemix.bundles.poi:3.9_2<br/>
-org.bouncycastle:com.springsource.org.bouncycastle.jce:1.39.0 <br/>
-org.bouncycastle:com.springsource.org.bouncycastle.mail:1.39.0 <br/>
-com.lowagie:itext:2.1.7 - repackaged with virgo bundlor and manifest file ./virgo-integration/bundlor/com/lowagie/itext/itext.mf<br/>
-commons-fileupload:commons-fileupload:1.3<br/>
-commons-io:commons-io:2.4<br/>
-com.spectral.com.sun.faces:jsf-api:2.1.26 (WARNING: check ./jboss-integration/jboss-standalone-conf/standalone.conf file to know how this bundle has been repackaged)<br/>
-com.sun.faces:jsf-impl:2.1.26<br/>
-org.glassfish.web:el-impl:2.2.1-b05<br/>
-org.apache.commons:commons-lang3:3.1<br/>
-rome:rome:1.0<br/>
-org.atmosphere:atmosphere-runtime:2.0.0<br/>
-org.primefaces:primefaces:3.5<br/><br/>
+org.glassfish:javax.faces:jar:2.2.9<br/>
+org.apache.commons:commons-lang3:jar:3.1<br/>
+javax.el:el-api:jar:2.2<br/>
+javax.annotation:jsr250-api:jar:1.0<br/>
+javax.validation:validation-api:jar:1.1.0.Final<br/>
+javax.servlet:javax.servlet-api:jar:3.0.1<br/>
+javax.enterprise:cdi-api:jar:1.1<br/>
+org.glassfish.main.javaee-api:javax.annotation:jar:3.1.2<br/>
+rome:rome:jar:1.0<br/>
+org.apache.poi:poi:jar:3.7<br/>
+com.lowagie:itext:jar:1.4.8<br/>
+net.sf.ehcache:ehcache:jar:2.9.0<br/>
+commons-fileupload:commons-fileupload:jar:1.3<br/>
+commons-io:commons-io:jar:2.4<br/>
+org.webjars:font-awesome:jar:4.2.0<br/>
+org.omnifaces:omnifaces:jar:1.8.1<br/>
+org.primefaces.extensions:primefaces-extensions:jar:3.1.0<br/>
+org.primefaces.extensions:resources-codemirror:jar:3.1.0<br/>
+org.primefaces:primefaces:jar:5.2<br/>
+org.primefaces.themes:all-themes:jar:1.0.10<br/>
 
 That's all. Then run Eclipse Virgo and deploy the compiled wab...<br/>
 <br/>

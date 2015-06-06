@@ -7,7 +7,7 @@
     <ui:define name="chapterItem">
 
         <p:growl id="growl"/>
-        
+
         <p:commandButton id="btn" value="Show Slide Menu" type="button"/>
         
         <p:slideMenu overlay="true" trigger="btn" my="left top" at="left bottom"
@@ -25,6 +25,7 @@
                             ajax="false" icon="ui-icon-check"/>
                 <p:menuitem value="Go Home" action="/views/home" ajax="false" icon="ui-icon-home"/>                
             </p:submenu>
+        
             <p:submenu label="JSF Links" icon="ui-icon-extlink">
                 <p:submenu label="JSF Components">
                     <p:menuitem value="PrimeFaces" url="http://primefaces.org"/>
